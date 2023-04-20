@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Button from './components/UI/button/Button';
+import ModalBack from './components/modal/ModalBack';
+
 
 function App() {
+  const [state, setState] = useState(false);
+
+  function openAndCloseModalHandler() {
+    setState(!state)
+  }
+
+ 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Модалки, порталы, тачки, дениги, админки и еще всякое там</h1>
+      {
+        state && <ModalBack closeModal={openAndCloseModalHandler}/>
+      }
+      {
+        state ? <Button title="Close modal"/> : <Button title="Open modal" onClick={openAndCloseModalHandler}/>
+      }
+      {openAndCloseModalHandler}
     </div>
   );
 }
